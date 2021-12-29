@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class thirdpersonmovement : MonoBehaviour
 {
+    #region vars
     public GameObject model;
 
     public CharacterController controller;
@@ -27,6 +28,7 @@ public class thirdpersonmovement : MonoBehaviour
     public Transform spawn;
 
     bool paused = false;
+    #endregion
 
     void Start()
     {
@@ -38,54 +40,50 @@ public class thirdpersonmovement : MonoBehaviour
     void Update()
     {
         if (model.transform.position.y <= -50f) Death();
-        else  Movement();
+        else Movement();
     }
 
     void Movement()
     {
-        if (!Menu())
+        #region GroundCheck
+        //grounded = Physics.CheckBox(groundCheck.position, new Vector3(model.transform.localScale.x - .1f, groundCheckSize, model.transform.localScale.z - .1f), Quaternion.Euler(0f, model.transform.rotation.y, 0f), groundMask);
+        grounded = Physics.CheckSphere(groundCheck.position, groundCheckSize, groundMask);
+        if (grounded && movevert.y < 0)
         {
-            grounded = Physics.CheckBox(groundCheck.position, new Vector3(model.transform.localScale.x - .1f, groundCheckSize, model.transform.localScale.z - .1f), Quaternion.Euler(0f, model.transform.rotation.y, 0f), groundMask);
-
-            if (grounded && movevert.y < 0)
-            {
-                movevert.y = -2f;
-            }
-
-
-            float horiz = Input.GetAxisRaw("Horizontal");
-            float vert = Input.GetAxisRaw("Vertical");
-            Vector3 direction = new Vector3(horiz, 0f, vert).normalized;
-
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            {
-                activespeed = speed * 2f;
-            }
-            else
-            {
-                activespeed = speed * 1f;
-            }
-
-
-
-            if (direction.magnitude >= 0.1f)
-            {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-                Vector3 movedir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(movedir.normalized * activespeed * Time.deltaTime);
-            }
-
-            if (Input.GetButtonDown("Jump") && grounded)
-            {
-                movevert.y = Mathf.Sqrt(jumpheight * -2f * gravity);
-            }
-
-            movevert.y += gravity * Time.deltaTime;  //TODO
-            controller.Move(movevert * Time.deltaTime); //TODO
+            movevert.y = -2f;
         }
+        #endregion
+        #region Actual Movement
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        //SPRINT
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            activespeed = speed * 2f;
+        }
+        else
+        {
+            activespeed = speed * 1f;
+        }
+        //
+
+        /*if(move.magnitude != 0f)
+            controller.Move(move.normalized * activespeed * Time.deltaTime);*/
+        #endregion
+        #region Jumping
+
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            movevert.y = Mathf.Sqrt(jumpheight * -2f * gravity);
+        }
+
+            /*GRAVITY*/
+        movevert.y += gravity * Time.deltaTime;  //BUG1
+        controller.Move((move.normalized * activespeed + movevert) * Time.deltaTime); //BUG1
+
+        #endregion
     }
 
     void Death()
