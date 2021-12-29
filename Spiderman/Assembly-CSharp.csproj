@@ -53,13 +53,16 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\UI\HealthBar.cs" />
+    <Compile Include="Assets\UI\Billboard.cs" />
+    <Compile Include="Assets\Scripts\CamMovement.cs" />
     <Compile Include="Assets\Dev.cs" />
-    <Compile Include="Assets\thirdpersonmovement.cs" />
-    <Compile Include="Assets\ScrollToZoom.cs" />
-    <Compile Include="Assets\HealthBar.cs" />
-    <Compile Include="Assets\CamMovement.cs" />
-    <Compile Include="Assets\Player.cs" />
-    <Compile Include="Assets\Billboard.cs" />
+    <Compile Include="Assets\Scripts\thirdpersonmovement.cs" />
+    <Compile Include="Assets\Scripts\ScrollToZoom.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\UI\Inventory.cs" />
+    <Compile Include="Assets\UI\Item.cs" />
+    <Compile Include="Assets\UI\UI_Inventory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
