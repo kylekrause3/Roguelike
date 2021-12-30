@@ -54,15 +54,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\UI\HealthBar.cs" />
+    <Compile Include="Assets\UI\Inventory.cs" />
     <Compile Include="Assets\UI\Billboard.cs" />
     <Compile Include="Assets\Scripts\CamMovement.cs" />
+    <Compile Include="Assets\UI\Item.cs" />
     <Compile Include="Assets\Dev.cs" />
     <Compile Include="Assets\Scripts\thirdpersonmovement.cs" />
+    <Compile Include="Assets\UI\UI_Inventory.cs" />
     <Compile Include="Assets\Scripts\ScrollToZoom.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\UI\Inventory.cs" />
-    <Compile Include="Assets\UI\Item.cs" />
-    <Compile Include="Assets\UI\UI_Inventory.cs" />
+    <Compile Include="Assets\UI\ItemAssets.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -12,7 +12,6 @@ public class Inventory
         AddItem(new Item { itemType = Item.Type.AttackBoost, amt = 1 });
         AddItem(new Item { itemType = Item.Type.JumpBoost, amt = 1 });
         AddItem(new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
-        Debug.Log(GetItemList());
     }
 
     public void AddItem(Item item)

@@ -29,6 +29,12 @@ public class UI_Inventory : MonoBehaviour
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>(); //put slot in ui
             itemSlotRectTransform.gameObject.SetActive(true);   //Make it visible
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+
+
+
+
+
+
             x++;
         }
     }
