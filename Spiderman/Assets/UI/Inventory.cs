@@ -9,9 +9,9 @@ public class Inventory
     public Inventory() {
         items = new List<Item>();
 
-        AddItem(new Item { itemType = Item.Type.AttackBoost, amt = 1 });
+        /*AddItem(new Item { itemType = Item.Type.AttackBoost, amt = 1 });
         AddItem(new Item { itemType = Item.Type.JumpBoost, amt = 1 });
-        AddItem(new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
+        AddItem(new Item { itemType = Item.Type.SpeedBoost, amt = 1 });*/
     }
 
     public void AddItem(Item item)

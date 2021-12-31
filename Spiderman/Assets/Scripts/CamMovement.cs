@@ -26,7 +26,7 @@ public class CamMovement : MonoBehaviour
 
         //up and down looking stuff
         xRotation -= mouseY; //+= does opposite for some reason
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); //restricts rotation inside of 180 degress
+        xRotation = Mathf.Clamp(xRotation, -89.99f, 89.99f); //restricts rotation inside of 180 degress
 
         //up and down
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //ROTATING JUST CAMERA ALONG X AXIS

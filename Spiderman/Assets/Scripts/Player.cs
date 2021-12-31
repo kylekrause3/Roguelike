@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         //Inventory
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
+        
 
         ItemWorld.SpawnItemWorld(new Vector3(20, 2, 20), new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.Type.AttackBoost, amt = 1 });
@@ -48,4 +49,17 @@ public class Player : MonoBehaviour
         currenthealth -= damage;
         healthBar.SetHealth(currenthealth);
     }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        ItemWorld itemWorld = col.GetComponent<ItemWorld>();
+        if(itemWorld != null)
+        {
+            //touching the item
+            inventory.AddItem(itemWorld.GetItem());
+            uiInventory.SetInventory(inventory);
+            itemWorld.DestroySelf();
+        }
+    }
+
 }

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
+    
+
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
         Transform transform = Instantiate(item.getTransform(), position, Quaternion.identity);
-
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        //itemWorld.addTrigger();
         itemWorld.SetItem(item);
 
         return itemWorld;
     }
 
 
-
+    public GameObject prefab;
     private Item item;
     
 
@@ -23,8 +25,32 @@ public class ItemWorld : MonoBehaviour
     {
         
     }
+
+    /*private void addTrigger()
+    {
+        prefab.AddComponent<SphereCollider>();
+        float largest = 0;
+        BoxCollider col = prefab.GetComponent<BoxCollider>();
+        for (int i = 0; i < 3; i++)
+        {
+            if (col.size[i] > largest) largest = col.size[i];
+        }
+        prefab.GetComponent<SphereCollider>().radius = (largest + 1f) / 2;
+        prefab.GetComponent<SphereCollider>().isTrigger = true;
+    }*/
+
     public void SetItem(Item item)
     {
         this.item = item;
+    }
+
+    public Item GetItem()
+    {
+        return item;
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }
