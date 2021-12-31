@@ -32,7 +32,7 @@ public class UI_Inventory : MonoBehaviour
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
 
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
-            image.sprite = item.GetSprite();
+            image.sprite = item.getSprite();
 
             x++;
         }

@@ -15,8 +15,9 @@ public class Item
 
     public Type itemType;
     public int amt;
+    //public int/string rarity;
 
-    public Sprite GetSprite()
+    public Sprite getSprite()
     {
         //for UI_Inventory
         switch (itemType)
@@ -28,4 +29,17 @@ public class Item
                 case Type.AttackBoost:  return ItemAssets.Instance.AttackBoostSprite;
         }
     }
+
+    public Transform getTransform()
+    {
+        switch (itemType)
+        {
+            default:
+            case Type.JumpBoost: return ItemAssets.Instance.JumpBoostPrefab;
+            case Type.SpeedBoost: return ItemAssets.Instance.SpeedBoostPrefab;
+            case Type.RegenBoost: return ItemAssets.Instance.RegenBoostPrefab;
+            case Type.AttackBoost: return ItemAssets.Instance.AttackBoostPrefab;
+        }
+    }
+
 }

@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
         //Inventory
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
+
+        ItemWorld.SpawnItemWorld(new Vector3(20, 2, 20), new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.Type.AttackBoost, amt = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(20, 2, -20), new Item { itemType = Item.Type.JumpBoost, amt = 1 });
         #endregion
     }
 
