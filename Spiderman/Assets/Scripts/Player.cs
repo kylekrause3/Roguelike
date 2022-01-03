@@ -29,9 +29,10 @@ public class Player : MonoBehaviour
         uiInventory.SetInventory(inventory);
         
 
-        ItemWorld.SpawnItemWorld(new Vector3(20, 2, 20), new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.Type.AttackBoost, amt = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(20, 2, -20), new Item { itemType = Item.Type.JumpBoost, amt = 1 });
+        /*ItemWorld.SpawnItemWorld(new Vector3(3.5f, 2f, 3.5f), new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-3.5f, 2f, 3.5f), new Item { itemType = Item.Type.AttackBoost, amt = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(3.5f, 2f, -3.5f), new Item { itemType = Item.Type.JumpBoost, amt = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-3.5f, 2f, -3.5f), new Item { itemType = Item.Type.RegenBoost, amt = 1 });*/
         #endregion
     }
 
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
         {
             //touching the item
             inventory.AddItem(itemWorld.GetItem());
-            uiInventory.SetInventory(inventory);
+            //uiInventory.SetInventory(inventory);
             itemWorld.DestroySelf();
         }
     }
