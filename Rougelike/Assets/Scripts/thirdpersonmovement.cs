@@ -17,7 +17,6 @@ public class thirdpersonmovement : MonoBehaviour
     float activespeed;
 
     public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
 
     public float gravity = -9.81f;
     bool grounded;
@@ -46,19 +45,24 @@ public class thirdpersonmovement : MonoBehaviour
     void Movement()
     {
         #region GroundCheck
+
         //grounded = Physics.CheckBox(groundCheck.position, new Vector3(model.transform.localScale.x - .1f, groundCheckSize, model.transform.localScale.z - .1f), Quaternion.Euler(0f, model.transform.rotation.y, 0f), groundMask);
         grounded = Physics.CheckSphere(groundCheck.position, groundCheckSize, groundMask);
         if (grounded && movevert.y < 0)
         {
             movevert.y = -2f;
         }
+
         #endregion
+
         #region Actual Movement
+
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
 
         //SPRINT
+        //maybe use this in a state
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             activespeed = speed * 2f;
@@ -69,25 +73,25 @@ public class thirdpersonmovement : MonoBehaviour
         }
         //
 
-        /*if(move.magnitude != 0f)
-            controller.Move(move.normalized * activespeed * Time.deltaTime);*/
         #endregion
+
         #region Jumping
 
+        //probably should use this in a state
         bool prevgrounded = grounded;
-        //box a little farther down so that when moving down slopes jumping is still possible
         grounded = Physics.CheckBox(groundCheck.position, new Vector3(model.transform.localScale.x - .1f, groundCheckSize + .5f, model.transform.localScale.z - .1f), Quaternion.Euler(0f, model.transform.rotation.y, 0f), groundMask);
+        //getkeydown to check only once on down
         if (Input.GetButtonDown("Jump") && grounded)
         {
             movevert.y = Mathf.Sqrt(jumpheight * -2f * gravity);
         }
         grounded = prevgrounded;
-
-            /*GRAVITY*/
-        movevert.y += gravity * Time.deltaTime;  //BUG1
-        controller.Move((move.normalized * activespeed + movevert) * Time.deltaTime); //BUG1
-
         #endregion
+
+        /*GRAVITY*/
+        movevert.y += gravity * Time.deltaTime; 
+
+        controller.Move((move.normalized * activespeed + movevert) * Time.deltaTime);
     }
 
     void Death()
