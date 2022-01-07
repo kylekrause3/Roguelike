@@ -8,8 +8,8 @@ public class ItemWorld : MonoBehaviour
 
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
-        Transform transform = Instantiate(item.getTransform(), position, Quaternion.identity);
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        GameObject prefab = Instantiate(item.getPrefab(), position, Quaternion.identity);
+        ItemWorld itemWorld = prefab.GetComponent<ItemWorld>();
         //itemWorld.addTrigger();
         itemWorld.SetItem(item);
 

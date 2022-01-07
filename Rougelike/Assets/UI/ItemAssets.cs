@@ -10,10 +10,14 @@ public class ItemAssets : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        
     }
 
 
-
+    public static void prtins()
+    {
+        Debug.Log(Instance);
+    }
 
     #region assets
     //for inventory
@@ -26,9 +30,9 @@ public class ItemAssets : MonoBehaviour
     #endregion
 
     #region 3d Prefabs
-    public Transform JumpBoostPrefab;
-    public Transform SpeedBoostPrefab;
-    public Transform RegenBoostPrefab;
-    public Transform AttackBoostPrefab;
+    public GameObject JumpBoostPrefab;
+    public GameObject SpeedBoostPrefab;
+    public GameObject RegenBoostPrefab;
+    public GameObject AttackBoostPrefab;
     #endregion
 }
