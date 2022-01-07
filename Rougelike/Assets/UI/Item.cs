@@ -36,7 +36,7 @@ public class Item
 
     public GameObject getPrefab()
     {
-        ItemAssets.prtins();
+        //ItemAssets.prtins();
         switch (itemType)
         {
             

@@ -15,13 +15,16 @@ public class Player : MonoBehaviour
     [SerializeField] private UI_Inventory uiInventory;
 
     #endregion
-
+    void Awake()
+    {
+        currenthealth = maxHealth;
+    }
     // Start is called before the first frame update
     void Start()
     {
         #region init
         //Health
-        currenthealth = maxHealth;
+        
         healthBar.SetMaxHealth(maxHealth);
 
         //Inventory

@@ -28,11 +28,13 @@ public class thirdpersonmovement : MonoBehaviour
 
     bool paused = false;
     #endregion
-
+    void Awake()
+    {
+        activespeed = speed * 1f;
+    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        activespeed = speed * 1f;
     }
 
 

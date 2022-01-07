@@ -8,6 +8,7 @@
  *      finish thirdpersoncamera, with crosshair and such from youtube tutorial
  *          https://www.youtube.com/watch?v=537B1kJp9YQ&t=235s
  *      add roll ability (maybe)
+ *      shouldn't have multiple physics.check... in thirdpersonmovement.cs
  * 
  * 
  * BUGS:
