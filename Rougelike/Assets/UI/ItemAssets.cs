@@ -7,10 +7,9 @@ public class ItemAssets : MonoBehaviour
     
     public static ItemAssets Instance { get; private set; }
 
-    private void Start()
+    private void Awake()//"[start and awake are] Almost the same thing; Awake occurs before Start. Idea is to set non dependency references (self relying only) in Awake and stuff that relies on others in Start."
     {
         Instance = this;
-        
     }
 
 
