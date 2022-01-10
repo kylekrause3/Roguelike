@@ -9,7 +9,7 @@ public class UI_Inventory : MonoBehaviour
     Transform itemSlotContainer;
     Transform itemSlotTemplate;
 
-    private void Start()
+    private void Awake()
     {
         itemSlotContainer = transform.Find("Slots");
         itemSlotTemplate = itemSlotContainer.Find("SlotTemplate");
