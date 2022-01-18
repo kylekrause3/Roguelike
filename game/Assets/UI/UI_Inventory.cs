@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_Inventory : MonoBehaviour 
 {
     Inventory inventory;
     Transform itemSlotContainer;
     Transform itemSlotTemplate;
+    //Transform itemSlotText;
 
     private void Awake()
     {
         itemSlotContainer = transform.Find("Slots");
         itemSlotTemplate = itemSlotContainer.Find("SlotTemplate");
+        //itemSlotText = itemSlotTemplate.Find("Text");
     }
     public void SetInventory(Inventory inventory)
     {
@@ -49,6 +52,23 @@ public class UI_Inventory : MonoBehaviour
 
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
             image.sprite = item.getSprite();
+
+
+            TextMeshProUGUI uiText = itemSlotRectTransform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+            GameObject textbackground = itemSlotRectTransform.Find("Text Background").GetComponent<GameObject>();
+            if (uiText != null && textbackground != null)
+            {
+                if (item.amt > 1)
+                {
+                    textbackground.SetActive(true);
+                    uiText.SetText(item.amt.ToString());
+                }
+                else
+                {
+                    textbackground.SetActive(false);
+                    uiText.SetText("");
+                }
+            }
 
             x++;
         }

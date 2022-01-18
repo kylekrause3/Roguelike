@@ -58,9 +58,9 @@ public class Item
             case Type.SpeedBoost:
             case Type.RegenBoost:
             case Type.AttackBoost:
-                return true;
+                return true;//all above is true
             case Type.JumpBoost:
-                return false;
+                return false;//all above is false
         }
     }
 }
