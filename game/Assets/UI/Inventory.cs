@@ -19,7 +19,6 @@ public class Inventory
 
     public void AddItem(Item item)
     {
-        Debug.Log(item);
         if (item.IsStackable())
         {
             bool itemInInventory = false;
@@ -43,6 +42,33 @@ public class Inventory
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
+
+    public void RemoveItem(Item item)
+    {
+        if (item.IsStackable())
+        {
+            Item itemInInventory = null;
+            foreach (Item inventoryItem in items)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amt -= item.amt;
+                    itemInInventory = inventoryItem;
+                }
+            }
+            if (itemInInventory != null && itemInInventory.amt <= 0)
+            {
+                items.Remove(item);
+            }
+        }
+        else
+        {
+            items.Remove(item);
+        }
+
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
 
     public List<Item> GetItemList()
     {

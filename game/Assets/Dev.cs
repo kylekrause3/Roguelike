@@ -20,4 +20,6 @@
  * OPTIONAL:
  *      You can add lighting to every individual ground item, kinda cute; gonna stick with universal color rn; prob do this with rarity of items in the future; see line 18 of item.cs for a start
  *          https://www.youtube.com/watch?v=2WnAOV7nHW0&t=582s 11:55
+ *      Add amount to world items (stack multiple items in one in world)
+ *          https://www.youtube.com/watch?v=2WnAOV7nHW0&t=582s 19:50
  */

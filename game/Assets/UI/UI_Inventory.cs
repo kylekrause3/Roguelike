@@ -55,17 +55,20 @@ public class UI_Inventory : MonoBehaviour
 
 
             TextMeshProUGUI uiText = itemSlotRectTransform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
-            GameObject textbackground = itemSlotRectTransform.Find("Text Background").GetComponent<GameObject>();
+            Debug.Log("uitext " + uiText);
+            Image textbackground = itemSlotRectTransform.Find("Text Background").GetComponent<Image>();
+            Debug.Log("background " + textbackground);
             if (uiText != null && textbackground != null)
             {
+                
                 if (item.amt > 1)
                 {
-                    textbackground.SetActive(true);
+                    textbackground.enabled = true;
                     uiText.SetText(item.amt.ToString());
                 }
                 else
                 {
-                    textbackground.SetActive(false);
+                    textbackground.enabled = false;
                     uiText.SetText("");
                 }
             }
