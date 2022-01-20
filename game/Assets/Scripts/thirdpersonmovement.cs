@@ -81,7 +81,7 @@ public class thirdpersonmovement : MonoBehaviour
 
         //probably should use this in a state
         bool prevgrounded = grounded;
-        grounded = Physics.CheckBox(groundCheck.position, new Vector3(model.transform.localScale.x - .1f, groundCheckSize + .5f, model.transform.localScale.z - .1f), Quaternion.Euler(0f, model.transform.rotation.y, 0f), groundMask);
+        //grounded = Physics.CheckBox(groundCheck.position, new Vector3(model.transform.localScale.x - .1f, groundCheckSize + .5f, model.transform.localScale.z - .1f), Quaternion.Euler(0f, model.transform.rotation.y, 0f), groundMask);
         //getkeydown to check only once on down
         if (Input.GetButtonDown("Jump") && grounded)
         {

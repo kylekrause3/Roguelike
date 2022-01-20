@@ -22,4 +22,15 @@
  *          https://www.youtube.com/watch?v=2WnAOV7nHW0&t=582s 11:55
  *      Add amount to world items (stack multiple items in one in world)
  *          https://www.youtube.com/watch?v=2WnAOV7nHW0&t=582s 19:50
+ *          
+ *          
+ * TIMELINE (from phone):
+ *      Finish up inventory skeleton
+ *      Program starting weapons/item
+ *      Roll/Dash system probably attached to a character
+ *      Make an actual level and see how it goes
+ *      UI/Menu/LevelSelect
+ *      
+ *      
+ *      level generation
  */
