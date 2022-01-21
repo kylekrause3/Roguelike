@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-    
+
 
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
@@ -13,6 +13,14 @@ public class ItemWorld : MonoBehaviour
         //itemWorld.addTrigger();
         itemWorld.SetItem(item);
 
+        return itemWorld;
+    }
+
+    public static ItemWorld DropItem(Vector3 dropPos, Item item)
+    {
+        Vector3 randomDir = MyUtils.randomDir();
+        ItemWorld itemWorld = SpawnItemWorld(dropPos + randomDir * 5f,  item);
+        itemWorld.GetComponent<Rigidbody>().AddForce(randomDir * 5f, ForceMode.Impulse);
         return itemWorld;
     }
 

@@ -10,6 +10,7 @@ public class UI_Inventory : MonoBehaviour
     Transform itemSlotContainer;
     Transform itemSlotTemplate;
     //Transform itemSlotText;
+    private Player player;
 
     private void Awake()
     {
@@ -17,6 +18,13 @@ public class UI_Inventory : MonoBehaviour
         itemSlotTemplate = itemSlotContainer.Find("SlotTemplate");
         //itemSlotText = itemSlotTemplate.Find("Text");
     }
+
+
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
+    }
+
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
@@ -46,6 +54,19 @@ public class UI_Inventory : MonoBehaviour
         float itemSlotCellSize = 50f;
         foreach (Item item in inventory.GetItemList())
         {
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {   //use item skeleton
+                
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {   //drop item skeleton
+                Item dupe = new Item { itemType = item.itemType, amt = item.amt};
+                inventory.RemoveItem(item);
+                ItemWorld.DropItem(player.transform.position, dupe);
+            }
+
+
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>(); //put slot in ui
             itemSlotRectTransform.gameObject.SetActive(true);   //Make it visible
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
