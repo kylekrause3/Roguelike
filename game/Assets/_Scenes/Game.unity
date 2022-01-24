@@ -3610,9 +3610,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1903322754}
   - component: {fileID: 1903322756}
-  - component: {fileID: 1903322755}
   - component: {fileID: 1903322758}
   - component: {fileID: 1903322757}
+  - component: {fileID: 1903322755}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3655,14 +3655,11 @@ MonoBehaviour:
   cam: {fileID: 963194228}
   jumpheight: 3
   speed: 6
-  turnSmoothTime: 0.1
   gravity: -19.62
   groundCheck: {fileID: 1150136619}
-  groundCheckSize: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  spawn: {fileID: 540855700}
 --- !u!143 &1903322756
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3693,10 +3690,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003f60d6b13a661498bdde2801f3e5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playermodel: {fileID: 929324510}
   healthBar: {fileID: 617741910}
   maxHealth: 100
   currenthealth: 0
   uiInventory: {fileID: 598684916}
+  jumpheight: 3
+  speed: 6
+  gravity: 10
+  charcontroller: {fileID: 1903322756}
+  camtransform: {fileID: 963194228}
+  groundCheck: {fileID: 1150136619}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!136 &1903322758
 CapsuleCollider:
   m_ObjectHideFlags: 0

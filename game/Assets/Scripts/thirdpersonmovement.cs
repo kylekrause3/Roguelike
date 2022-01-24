@@ -11,26 +11,23 @@ public class thirdpersonmovement : MonoBehaviour
     public Transform cam;
 
     Vector3 movevert;
-    public float jumpheight = 3f;
+    public float jumpheight;
 
-    public float speed = 6f;
+    public float speed;
     float activespeed;
 
-    public float turnSmoothTime = 0.1f;
-
-    public float gravity = -9.81f;
+    public float gravity;
     bool grounded;
     public Transform groundCheck;
-    public float groundCheckSize = .1f;
+    float groundCheckSize = .1f;
     public LayerMask groundMask;
 
-    public Transform spawn;
 
     bool paused = false;
     #endregion
     void Awake()
     {
-        activespeed = speed * 1f;
+        
     }
     void Start()
     {
@@ -38,13 +35,28 @@ public class thirdpersonmovement : MonoBehaviour
     }
 
 
-    void Update()
+    public thirdpersonmovement(float jumpheight, float speed, float gravity, CharacterController controller, Transform cam, Transform groundCheck, LayerMask groundMask)
     {
-        if (model.transform.position.y <= -50f) Death();
-        else Movement();
+        this.jumpheight = jumpheight;
+        this.speed = speed;
+        this.gravity = gravity * -1f;
+
+        this.controller = controller;
+        this.cam = cam;
+        this.groundCheck = groundCheck;
+        this.groundMask = groundMask;
+
+
+        activespeed = speed * 1f;
     }
 
-    void Movement()
+    void Update()
+    {
+        /*if (model.transform.position.y <= -50f) Death();
+        else Movement();*/
+    }
+
+    public void Movement()
     {
         #region GroundCheck
 
@@ -94,13 +106,6 @@ public class thirdpersonmovement : MonoBehaviour
         movevert.y += gravity * Time.deltaTime; 
 
         controller.Move((move.normalized * activespeed + movevert) * Time.deltaTime);
-    }
-
-    void Death()
-    {
-        movevert.y = -1f;
-        transform.position = spawn.position;
-        //transform.position = new Vector3(0f, 1f, 0f) ALSO WORKS, I want spawn in map so that i can send other stuff there easily
     }
 
     bool Menu()

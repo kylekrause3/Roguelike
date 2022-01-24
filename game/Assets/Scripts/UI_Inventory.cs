@@ -57,7 +57,7 @@ public class UI_Inventory : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {   //use item skeleton
-                
+                inventory.UseItem(item);
             }
             if (Input.GetKeyDown(KeyCode.X))
             {   //drop item skeleton

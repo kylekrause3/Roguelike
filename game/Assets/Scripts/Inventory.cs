@@ -8,8 +8,10 @@ public class Inventory
     public event EventHandler OnItemListChanged;
 
     List<Item> items;
+    Action<Item> useItemAction;
 
-    public Inventory() {
+    public Inventory(Action<Item> useItemAction) {
+        this.useItemAction = useItemAction;
         items = new List<Item>();
 
         /*AddItem(new Item { itemType = Item.Type.AttackBoost, amt = 1 });
@@ -41,6 +43,12 @@ public class Inventory
         }
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+
+    public void UseItem(Item item)
+    {
+        useItemAction(item);
     }
 
     public void RemoveItem(Item item)
