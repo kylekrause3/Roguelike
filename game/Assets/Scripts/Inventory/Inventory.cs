@@ -42,7 +42,7 @@ public class Inventory
             items.Add(item);
         }
 
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        OnItemListChanged?.Invoke(this, EventArgs.Empty); //checks if onitemlistchanged is null first, if it's not then it calls invoke instead of giving an exception
     }
 
 
