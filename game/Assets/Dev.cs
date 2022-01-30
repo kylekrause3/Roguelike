@@ -26,6 +26,7 @@
  *          
  * TIMELINE (from phone):
  *      Finish up inventory skeleton
+ *          Need regen system and attack system, most preferabely centrailized with player.cs
  *      Program starting weapons/item
  *      Roll/Dash system probably attached to a character
  *      Make an actual level and see how it goes

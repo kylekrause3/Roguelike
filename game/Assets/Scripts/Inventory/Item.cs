@@ -17,8 +17,9 @@ public class Item
 
     public Type itemType;
     public int amt;
-    //public int/string rarity;
+    public float intensity;
 
+    
     public Sprite getSprite()
     {
         //for UI_Inventory
@@ -62,5 +63,29 @@ public class Item
             case Type.JumpBoost:
                 return false;//all above is false
         }
+    }
+
+
+
+    public String toString()
+    {
+        string ret = "";
+        switch (itemType)
+        {
+            case Type.JumpBoost: 
+                ret += "JumpBoost";
+                break;
+            case Type.SpeedBoost: 
+                ret += "SpeedBoost";
+                break;
+            case Type.RegenBoost:
+                ret += "RegenBoost";
+                break;
+            case Type.AttackBoost: 
+                ret += "AttackBoost";
+                break;
+            default: break;
+        }
+        return ret + " Amount: " + amt;
     }
 }

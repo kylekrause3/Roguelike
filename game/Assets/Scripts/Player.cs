@@ -38,28 +38,28 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        #region init
         healthBar.SetMaxHealth(maxHealth);
 
         //Inventory
-        inventory = new Inventory(UseItem);
+        inventory = new Inventory(UseItem, this);
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
         //Movement
-        mvmt = new thirdpersonmovement(jumpheight, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
-        #endregion
+        mvmt = new thirdpersonmovement(this, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        mvmt.Movement(speed, jumpheight);
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             TakeDamage(5f);
         }
-
-        mvmt.Movement();
     }
 
     void TakeDamage(float damage)
@@ -81,14 +81,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddBuff(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.Type.JumpBoost: jumpheight += item.intensity; break;
+            case Item.Type.SpeedBoost: speed += item.intensity; break;
+            case Item.Type.RegenBoost: /* need to code in regeneration */
+            case Item.Type.AttackBoost: /* need to code in attacking */ break;
+            default: break;
+        }
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         ItemWorld itemWorld = col.GetComponent<ItemWorld>();
         if(itemWorld != null)
         {
-            //touching the item
-            inventory.AddItem(itemWorld.GetItem());
-            //uiInventory.SetInventory(inventory);
+            Item item = itemWorld.GetItem();
+            inventory.AddItem(item);
             itemWorld.DestroySelf();
         }
     }

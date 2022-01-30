@@ -6,14 +6,16 @@ using UnityEngine;
 public class Inventory
 {
     public event EventHandler OnItemListChanged;
+    Player player;
 
     List<Item> items;
     Action<Item> useItemAction;
 
-    public Inventory(Action<Item> useItemAction) {
+    public Inventory(Action<Item> useItemAction, Player player) {
         this.useItemAction = useItemAction;
         items = new List<Item>();
 
+        this.player = player;
         /*AddItem(new Item { itemType = Item.Type.AttackBoost, amt = 1 });
         AddItem(new Item { itemType = Item.Type.JumpBoost, amt = 1 });
         AddItem(new Item { itemType = Item.Type.SpeedBoost, amt = 1 });*/
@@ -43,6 +45,7 @@ public class Inventory
         }
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty); //checks if onitemlistchanged is null first, if it's not then it calls invoke instead of giving an exception
+        player.AddBuff(item);
     }
 
 

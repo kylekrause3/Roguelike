@@ -76,9 +76,9 @@ public class UI_Inventory : MonoBehaviour
 
 
             TextMeshProUGUI uiText = itemSlotRectTransform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
-            Debug.Log("uitext " + uiText);
+            //Debug.Log("uitext " + uiText);
             Image textbackground = itemSlotRectTransform.Find("Text Background").GetComponent<Image>();
-            Debug.Log("background " + textbackground);
+            //Debug.Log("background " + textbackground);
             if (uiText != null && textbackground != null)
             {
                 
