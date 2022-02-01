@@ -7,11 +7,16 @@ public class Player : MonoBehaviour
     #region vars
     [Header("General Vars")]
     public GameObject playermodel;
+    float timer;
 
     [Header("Health")]
     public HealthBar healthBar;
     public float maxHealth = 100;
     public float currenthealth;
+    public float regenerationAmount;
+    public float regenerationTime;
+    float lastTimeHit;
+    int lastTimeHitSecs;
 
     [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
@@ -34,6 +39,9 @@ public class Player : MonoBehaviour
     void Awake()
     {
         currenthealth = maxHealth;
+
+        //timer stuff
+        timer = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -54,17 +62,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         mvmt.Movement(speed, jumpheight);
 
         if (Input.GetKeyDown(KeyCode.J))
         {
             TakeDamage(5f);
         }
+        //regen
+        if(currenthealth < maxHealth)
+            if((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime)
+                Heal(regenerationAmount * Time.deltaTime);
+            
+        
+        if ((int)currenthealth == (int)maxHealth)
+            currenthealth = maxHealth;
     }
 
     void TakeDamage(float damage)
     {
         currenthealth -= damage;
+        healthBar.SetHealth(currenthealth);
+        lastTimeHit = Time.time;
+        lastTimeHitSecs = (int)(Time.time % 60);
+    }
+
+    public void Heal(float amt)
+    {
+        currenthealth += amt;
         healthBar.SetHealth(currenthealth);
     }
 
@@ -87,7 +112,10 @@ public class Player : MonoBehaviour
         {
             case Item.Type.JumpBoost: jumpheight += item.intensity; break;
             case Item.Type.SpeedBoost: speed += item.intensity; break;
-            case Item.Type.RegenBoost: /* need to code in regeneration */
+            case Item.Type.RegenBoost: 
+                regenerationTime -= item.intensity;
+                regenerationAmount *= 1.5f;
+                break;
             case Item.Type.AttackBoost: /* need to code in attacking */ break;
             default: break;
         }

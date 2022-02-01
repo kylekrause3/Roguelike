@@ -48,7 +48,7 @@ public class thirdpersonmovement : MonoBehaviour
         grounded = Physics.CheckSphere(groundCheck.position, groundCheckSize, groundMask);
         if (grounded && movevert.y < 0)
         {
-            movevert.y = -2f;
+            movevert.y = gravity / 3f * -1f;
         }
 
         float x = Input.GetAxisRaw("Horizontal");

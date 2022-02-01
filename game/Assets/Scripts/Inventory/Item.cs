@@ -57,9 +57,9 @@ public class Item
         {
             default :
             case Type.SpeedBoost:
-            case Type.RegenBoost:
             case Type.AttackBoost:
                 return true;//all above is true
+            case Type.RegenBoost:
             case Type.JumpBoost:
                 return false;//all above is false
         }

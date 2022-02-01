@@ -1930,13 +1930,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885212993}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 2.75, z: -5.95}
+  m_LocalRotation: {x: -0.016300166, y: -0, z: -0, w: 0.99986714}
+  m_LocalPosition: {x: 0.07999992, y: 2.75, z: -5.95}
   m_LocalScale: {x: 1, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1568638470}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.868, y: 0, z: 0}
 --- !u!65 &885212995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2734,7 +2734,7 @@ MonoBehaviour:
   item:
     itemType: 2
     amt: 1
-    intensity: 0
+    intensity: 1
 --- !u!1001 &1282937419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3622,8 +3622,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playermodel: {fileID: 929324510}
   healthBar: {fileID: 617741910}
-  maxHealth: 100
+  maxHealth: 200
   currenthealth: 0
+  regenerationAmount: 100
+  regenerationTime: 5
   uiInventory: {fileID: 598684916}
   jumpheight: 3
   speed: 6
