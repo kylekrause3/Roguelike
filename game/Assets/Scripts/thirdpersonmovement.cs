@@ -19,7 +19,7 @@ public class thirdpersonmovement : MonoBehaviour
     Vector3 movevert;
 
     bool grounded;
-    public float groundCheckSize = .5f;
+    public float groundCheckSize;
     bool paused = false;
 
     #endregion
@@ -40,6 +40,8 @@ public class thirdpersonmovement : MonoBehaviour
 
         movevert.y = -2f;
         activespeed = speed * 1f;
+
+        groundCheckSize = .41f;
     }
 
     public void Movement(float speed, float jumpheight)

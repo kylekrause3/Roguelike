@@ -7,11 +7,10 @@ public class Player : MonoBehaviour
     #region vars
     [Header("General Vars")]
     public GameObject playermodel;
-    float timer;
 
     [Header("Health")]
     public HealthBar healthBar;
-    public float maxHealth = 100;
+    public float maxHealth;
     public float currenthealth;
     public float regenerationAmount;
     public float regenerationTime;
@@ -40,8 +39,6 @@ public class Player : MonoBehaviour
     {
         currenthealth = maxHealth;
 
-        //timer stuff
-        timer = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -62,7 +59,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
         mvmt.Movement(speed, jumpheight);
 
         if (Input.GetKeyDown(KeyCode.J))
