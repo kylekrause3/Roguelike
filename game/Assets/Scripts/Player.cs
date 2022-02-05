@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     thirdpersonmovement mvmt;
 
     //[Header("Attacking")]
-    Transform firepoint;
     Gun gun;
 
 
@@ -42,30 +41,24 @@ public class Player : MonoBehaviour
     void Awake()
     {
         currenthealth = maxHealth;
-        firepoint = camtransform;
-        //firepoint.position.z += 3f; TODO
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         
         healthBar.SetMaxHealth(maxHealth);
 
-        //Inventory
         inventory = new Inventory(UseItem, this);
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
-        //Movement
         mvmt = new thirdpersonmovement(this, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
 
-        //Attacking
-        gun = new Gun(); //gun w/ damage = 10f, range = Mathf.Infinity, fireRate = 1f (per second)
+        gun = new Gun();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         mvmt.Movement(speed, jumpheight);
@@ -74,19 +67,22 @@ public class Player : MonoBehaviour
         {
             TakeDamage(5f);
         }
-        if(Input.GetAxisRaw("Fire1") != 0 || Input.GetKeyDown(KeyCode.L))
+        if (Input.GetAxisRaw("Fire1") != 0 || Input.GetKeyDown(KeyCode.L))
         {
             gun.shoot(camtransform);
         }
 
 
         //regen
-        if(currenthealth < maxHealth)
-            if((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime)
-                Heal(regenerationAmount * Time.deltaTime);
-            
+        if (currenthealth < maxHealth)
+        {
+            if ((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime) 
+            { 
+                Heal(regenerationAmount * Time.deltaTime); 
+            }
+        }
         
-        if ((int)currenthealth == (int)maxHealth)
+        if (currenthealth >= maxHealth)
             currenthealth = maxHealth;
     }
 
