@@ -33,16 +33,22 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
     thirdpersonmovement mvmt;
 
+    //[Header("Attacking")]
+    Transform firepoint;
+    Gun gun;
+
 
     #endregion
     void Awake()
     {
         currenthealth = maxHealth;
-
+        firepoint = camtransform;
+        //firepoint.position.z += 3f; TODO
     }
     // Start is called before the first frame update
     void Start()
     {
+        
         healthBar.SetMaxHealth(maxHealth);
 
         //Inventory
@@ -52,6 +58,9 @@ public class Player : MonoBehaviour
 
         //Movement
         mvmt = new thirdpersonmovement(this, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
+
+        //Attacking
+        gun = new Gun(); //gun w/ damage = 10f, range = Mathf.Infinity, fireRate = 1f (per second)
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -65,6 +74,12 @@ public class Player : MonoBehaviour
         {
             TakeDamage(5f);
         }
+        if(Input.GetAxisRaw("Fire1") != 0 || Input.GetKeyDown(KeyCode.L))
+        {
+            gun.shoot(camtransform);
+        }
+
+
         //regen
         if(currenthealth < maxHealth)
             if((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime)

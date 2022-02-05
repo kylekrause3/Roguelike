@@ -8,7 +8,6 @@ public class thirdpersonmovement : MonoBehaviour
     float activespeed,  gravity;
 
     CharacterController controller;
-    Transform cam;
 
     Transform groundCheck;
     LayerMask groundMask;
@@ -32,7 +31,6 @@ public class thirdpersonmovement : MonoBehaviour
         this.gravity = gravity;
 
         this.controller = controller;
-        this.cam = cam;
         this.groundCheck = groundCheck;
         this.groundMask = groundMask;
 
