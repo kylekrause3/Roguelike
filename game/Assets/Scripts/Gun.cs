@@ -13,7 +13,7 @@ public class Gun
 
     private float nextFireTime = 0f;
 
-    public Gun(float damage = 10f, float range = Mathf.Infinity, float fireRate = 1f)
+    public Gun(float damage = 10f, float range = Mathf.Infinity, float fireRate = 5f)
     {
         this.damage = damage;
         this.range = range;

@@ -42,6 +42,11 @@ public class Enemy : MonoBehaviour
         //cleans up health
         if ((int)currenthealth == (int)maxHealth)
             currenthealth = maxHealth;
+
+        if (currenthealth <= 0f)
+        {
+            Death();
+        }
     }
 
 
@@ -57,5 +62,10 @@ public class Enemy : MonoBehaviour
     {
         currenthealth += amt;
         healthBar.SetHealth(currenthealth);
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

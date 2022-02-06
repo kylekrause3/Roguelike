@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class thirdpersonmovement : MonoBehaviour
+public class thirdpersonmovement
 {
     #region vars
-    Player player;
+    Transform player;
 
     float activespeed,  gravity;
 
@@ -19,12 +19,11 @@ public class thirdpersonmovement : MonoBehaviour
 
     bool grounded;
     public float groundCheckSize;
-    bool paused = false;
 
     #endregion
 
 
-    public thirdpersonmovement(Player player, float speed, float gravity, CharacterController controller, Transform cam, Transform groundCheck, LayerMask groundMask)
+    public thirdpersonmovement(Transform player, float speed, float gravity, CharacterController controller, Transform cam, Transform groundCheck, LayerMask groundMask)
     {
         /*this.jumpheight = jumpheight;
         this.speed = speed;*/
@@ -77,7 +76,7 @@ public class thirdpersonmovement : MonoBehaviour
     }
 
     
-    bool Menu()
+    /*bool Menu()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -94,5 +93,7 @@ public class thirdpersonmovement : MonoBehaviour
             }
         }
         else return paused;
-    }
+    }*/
+
+    
 }

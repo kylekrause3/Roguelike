@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
+    public GameObject prefab;
+    private Item item;
 
-
+    Player player;
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
         GameObject prefab = Instantiate(item.getPrefab(), position, Quaternion.identity);
@@ -24,15 +26,11 @@ public class ItemWorld : MonoBehaviour
         return itemWorld;
     }
 
-
-    public GameObject prefab;
-    private Item item;
-    
-
     private void Start()
     {
         
     }
+    
 
     /*private void addTrigger()
     {

@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] private UI_Inventory uiInventory;
-    Inventory inventory;
+    public Inventory inventory;
 
 
     [Header("Movement")]
@@ -52,9 +52,9 @@ public class Player : MonoBehaviour
         uiInventory.SetInventory(inventory);
         uiInventory.SetPlayer(this);
 
-        mvmt = new thirdpersonmovement(this, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
+        mvmt = new thirdpersonmovement(this.transform, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
 
-        gun = new Gun();
+        gun = new Gun(50f);
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     {
         currenthealth -= damage;
         healthBar.SetHealth(currenthealth);
-        lastTimeHit = Time.time;
+        lastTimeHit = Time.time; 
         lastTimeHitSecs = (int)(Time.time % 60);
     }
 
@@ -139,4 +139,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    
+
+    
 }
