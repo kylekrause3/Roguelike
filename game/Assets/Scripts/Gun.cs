@@ -29,7 +29,7 @@ public class Gun
             if (Physics.Raycast(origin.position, origin.transform.forward, out hitInfo, range))
             {
                 Enemy enemyHit = hitInfo.transform.GetComponent<Enemy>();
-                Debug.DrawLine(origin.position, hitInfo.transform.position, Color.red, .5f); //this is weird, espeically with large objects, because the hitinfo position is the center of the object hit, not the impact point.
+                Debug.DrawLine(origin.position, hitInfo.point, Color.red, .5f); //this is weird, espeically with large objects, because the hitinfo position is the center of the object hit, not the impact point.
                 if (enemyHit != null)
                 {
                     enemyHit.TakeDamage(damage);
