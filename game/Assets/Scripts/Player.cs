@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     #region vars
     [Header("General Vars")]
     public GameObject playermodel;
+    public Transform camtransform;
 
     [Header("Health")]
     public HealthBar healthBar;
@@ -26,15 +27,21 @@ public class Player : MonoBehaviour
     public float jumpheight = 3f;
     public float speed = 6f;
     public float gravity = 10f;
-
     public CharacterController charcontroller;
-    public Transform camtransform;
+    
     public Transform groundCheck;
     public LayerMask groundMask;
     thirdpersonmovement mvmt;
 
-    //[Header("Attacking")]
-    Gun gun;
+    [Header("Attacking")]
+    public Gun gun;
+    /*
+    public Transform gunTransform;
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;*/
+
+    //Gun gun;
+    
 
 
     #endregion
@@ -54,7 +61,7 @@ public class Player : MonoBehaviour
 
         mvmt = new thirdpersonmovement(this.transform, speed, gravity, charcontroller, camtransform, groundCheck, groundMask);
 
-        gun = new Gun(50f);
+        //gun = new Gun(muzzleFlash, impactEffect, 10f);
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -67,10 +74,10 @@ public class Player : MonoBehaviour
         {
             TakeDamage(5f);
         }
-        if (Input.GetAxisRaw("Fire1") != 0 || Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetAxisRaw("Fire1") != 0 || Input.GetKeyDown(KeyCode.L))
         {
-            gun.shoot(camtransform);
-        }
+            gun.shoot(camtransform, damagemod);
+        }*/
 
 
         //regen
@@ -81,12 +88,9 @@ public class Player : MonoBehaviour
                 Heal(regenerationAmount * Time.deltaTime); 
             }
         }
-        
-        if (currenthealth >= maxHealth)
-            currenthealth = maxHealth;
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currenthealth -= damage;
         healthBar.SetHealth(currenthealth);
@@ -98,6 +102,9 @@ public class Player : MonoBehaviour
     {
         currenthealth += amt;
         healthBar.SetHealth(currenthealth);
+
+        if (currenthealth >= maxHealth)
+            currenthealth = maxHealth;
     }
 
     public void UseItem(Item item)
@@ -123,9 +130,16 @@ public class Player : MonoBehaviour
                 regenerationTime -= item.intensity;
                 regenerationAmount *= 1.5f;
                 break;
-            case Item.Type.AttackBoost: /* need to code in attacking */ break;
+            case Item.Type.AttackBoost:
+                gun.setDamageMod(gun.getDamageMod() + item.intensity);
+                break;
             default: break;
         }
+    }
+
+    public Transform getCamTransform()
+    {
+        return camtransform;
     }
 
     private void OnTriggerEnter(Collider col)
@@ -138,8 +152,5 @@ public class Player : MonoBehaviour
             itemWorld.DestroySelf();
         }
     }
-
-    
-
     
 }

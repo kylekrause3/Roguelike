@@ -38,15 +38,7 @@ public class Enemy : MonoBehaviour
         if (currenthealth < maxHealth)
             if ((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime)
                 Heal(regenerationAmount * Time.deltaTime);
-
-        //cleans up health
-        if ((int)currenthealth == (int)maxHealth)
-            currenthealth = maxHealth;
-
-        if (currenthealth <= 0f)
-        {
-            Death();
-        }
+        
     }
 
 
@@ -56,12 +48,20 @@ public class Enemy : MonoBehaviour
         healthBar.SetHealth(currenthealth);
         lastTimeHit = Time.time;
         lastTimeHitSecs = (int)(Time.time % 60);
+
+        if (currenthealth <= 0f)
+        {
+            Death();
+        }
     }
 
     public void Heal(float amt)
     {
         currenthealth += amt;
         healthBar.SetHealth(currenthealth);
+
+        if (currenthealth >= maxHealth)
+            currenthealth = maxHealth;
     }
 
     public void Death()

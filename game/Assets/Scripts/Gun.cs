@@ -2,40 +2,88 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun
+public class Gun : MonoBehaviour
 {
     /* Raycasting */
     RaycastHit hitInfo;
 
-    float damage;
-    float range;
-    float fireRate; //bullets per second
+    public Player player;
+    public Transform cam;
+
+    public float damage;
+    float damagemodifier = 1f;
+    public float range;
+    public float fireRate = 5f; //bullets per second
+    public float impactforce;
+
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
 
     private float nextFireTime = 0f;
-
-    public Gun(float damage = 10f, float range = Mathf.Infinity, float fireRate = 5f)
+    private bool mouseInUse = false;
+    
+    void Start()
     {
-        this.damage = damage;
-        this.range = range;
-        this.fireRate = fireRate;
+        if (range <= 0f)
+            range = Mathf.Infinity;
+        if (fireRate <= 0f)
+            fireRate = 5f;
+        if (impactforce <= 0f)
+            impactforce = 25f;
     }
+
+    void Update()
+    {
+        gameObject.transform.rotation = cam.transform.rotation;
+        //this logic is so that it's like input.getbuttondown (semi-auto fire). To make it automatic, you need to get rid of the stuff using mouseInUse
+        if (Input.GetAxisRaw("Fire1") != 0)
+        {
+            if (mouseInUse == false)
+            {
+                shoot(player.getCamTransform());
+                mouseInUse = true;
+            }
+        }
+        if (Input.GetAxisRaw("Fire1") == 0)
+        {
+            mouseInUse = false;
+        }
+    }
+
 
     public void shoot(Transform origin)
     {
         if (nextFireTime <= Time.time)
         {
+            muzzleFlash.Play();
+
             origin.position += origin.transform.forward * VirtualCamera.getCamDistance();
             nextFireTime = Time.time + (1f / fireRate);
             if (Physics.Raycast(origin.position, origin.transform.forward, out hitInfo, range))
             {
                 Enemy enemyHit = hitInfo.transform.GetComponent<Enemy>();
-                Debug.DrawLine(origin.position, hitInfo.point, Color.red, .5f); //this is weird, espeically with large objects, because the hitinfo position is the center of the object hit, not the impact point.
+                Debug.DrawLine(origin.position, hitInfo.point, Color.red, .5f);
                 if (enemyHit != null)
                 {
-                    enemyHit.TakeDamage(damage);
+                    enemyHit.TakeDamage(damage * damagemodifier);
                 }
+
+                hitInfo.rigidbody?.AddForce(-hitInfo.normal * impactforce);
+
+                GameObject impact = Instantiate(impactEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                Destroy(impact, 1f);
             }
         }
+    }
+
+    public void setDamageMod(float x)
+    {
+        damagemodifier = x;
+    }
+
+    public float getDamageMod()
+    {
+        return damagemodifier;
     }
 }
 
