@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+         
         healthBar.SetMaxHealth(maxHealth);
 
         inventory = new Inventory(UseItem, this);
@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currenthealth);
         lastTimeHit = Time.time; 
         lastTimeHitSecs = (int)(Time.time % 60);
+
     }
 
     public void Heal(float amt)
