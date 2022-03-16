@@ -9583,7 +9583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1958081474
 Transform:
   m_ObjectHideFlags: 0
@@ -9618,6 +9618,7 @@ MonoBehaviour:
   damage: 10
   range: 0
   fireRate: 0
+  impactforce: 0
   muzzleFlash: {fileID: 1064395471}
   impactEffect: {fileID: 8832743109353915350, guid: 2544290b5c689f84a94377b8a6b5163a, type: 3}
 --- !u!1001 &2016126003
