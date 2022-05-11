@@ -52,7 +52,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+<<<<<<< HEAD
 
+=======
+         
+>>>>>>> 0a0034627a761593442bc1032782c672974345ee
         healthBar.SetMaxHealth(maxHealth);
 
         inventory = new Inventory(UseItem, this);

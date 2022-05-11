@@ -10148,6 +10148,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+<<<<<<< HEAD:game/Assets/_Scenes/Level 0.unity
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10200,6 +10201,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958062308}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+=======
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ad81778a8a38a409f0fd175ff045e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1903322757}
+  cam: {fileID: 963194228}
+  damage: 10
+  range: 0
+  fireRate: 0
+  impactforce: 0
+  muzzleFlash: {fileID: 1064395471}
+  impactEffect: {fileID: 8832743109353915350, guid: 2544290b5c689f84a94377b8a6b5163a, type: 3}
+>>>>>>> 0a0034627a761593442bc1032782c672974345ee:game/Assets/_Scenes/Game.unity
 --- !u!1001 &2016126003
 PrefabInstance:
   m_ObjectHideFlags: 0
