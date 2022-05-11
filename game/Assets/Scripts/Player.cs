@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public float speed = 6f;
     public float gravity = 10f;
     public CharacterController charcontroller;
-    
+
     public Transform groundCheck;
     public LayerMask groundMask;
     thirdpersonmovement mvmt;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public GameObject impactEffect;*/
 
     //Gun gun;
-    
+
 
 
     #endregion
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+
         healthBar.SetMaxHealth(maxHealth);
 
         inventory = new Inventory(UseItem, this);
@@ -83,9 +83,9 @@ public class Player : MonoBehaviour
         //regen
         if (currenthealth < maxHealth)
         {
-            if ((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime) 
-            { 
-                Heal(regenerationAmount * Time.deltaTime); 
+            if ((int)(Time.time % 60) >= lastTimeHitSecs + regenerationTime)
+            {
+                Heal(regenerationAmount * Time.deltaTime);
             }
         }
     }
@@ -94,8 +94,9 @@ public class Player : MonoBehaviour
     {
         currenthealth -= damage;
         healthBar.SetHealth(currenthealth);
-        lastTimeHit = Time.time; 
+        lastTimeHit = Time.time;
         lastTimeHitSecs = (int)(Time.time % 60);
+
     }
 
     public void Heal(float amt)
@@ -115,7 +116,7 @@ public class Player : MonoBehaviour
             //EX:
             case Item.Type.SpeedBoost:
                 //movement.addspeed or whatever to apply the buff
-                inventory.RemoveItem(new Item { itemType = Item.Type.SpeedBoost, amt  = 1 });
+                inventory.RemoveItem(new Item { itemType = Item.Type.SpeedBoost, amt = 1 });
                 break;
         }
     }
@@ -126,7 +127,7 @@ public class Player : MonoBehaviour
         {
             case Item.Type.JumpBoost: jumpheight += item.intensity; break;
             case Item.Type.SpeedBoost: speed += item.intensity; break;
-            case Item.Type.RegenBoost: 
+            case Item.Type.RegenBoost:
                 regenerationTime -= item.intensity;
                 regenerationAmount *= 1.5f;
                 break;
@@ -143,14 +144,14 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider col)
-    {
+    { 
         ItemWorld itemWorld = col.GetComponent<ItemWorld>();
-        if(itemWorld != null)
+        if (itemWorld != null)
         {
             Item item = itemWorld.GetItem();
             inventory.AddItem(item);
             itemWorld.DestroySelf();
         }
     }
-    
+
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable] //so that we can use it in editor, ItemWorldSpawner.cs
+[Serializable] //so that we can use it in editor, ItemWorldSpawner.cs, needs "using System"
 public class Item
 {
    public enum Type
@@ -58,10 +58,11 @@ public class Item
             default :
             case Type.SpeedBoost:
             case Type.AttackBoost:
-                return true;//all above is true
             case Type.RegenBoost:
             case Type.JumpBoost:
-                return false;//all above is false
+                return true;//all above are stackable
+            //insert cases here for not stackable items
+                return false;//all above are not stackable
         }
     }
 

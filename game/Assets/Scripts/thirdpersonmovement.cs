@@ -5,7 +5,7 @@ public class thirdpersonmovement
     #region vars
     Transform player;
 
-    float activespeed,  gravity;
+    float activespeed, gravity;
 
     CharacterController controller;
 
@@ -63,7 +63,7 @@ public class thirdpersonmovement
         {
             activespeed = speed * 1f;
         }
-        
+
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
@@ -75,7 +75,7 @@ public class thirdpersonmovement
         controller.Move((move.normalized * activespeed + movevert) * Time.deltaTime);
     }
 
-    
+
     /*bool Menu()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -95,5 +95,5 @@ public class thirdpersonmovement
         else return paused;
     }*/
 
-    
+
 }

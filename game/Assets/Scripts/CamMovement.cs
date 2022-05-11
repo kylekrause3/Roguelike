@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CamMovement : MonoBehaviour
 {
-
     public float sensitivity = 100;
-    public float actualsens;
+    float actualsens;
     public Transform player;
 
     float xRotation = 0;
