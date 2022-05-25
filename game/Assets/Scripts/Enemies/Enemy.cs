@@ -70,4 +70,11 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public void Attack(Player target)
+    {
+        if (target == null) return;
+
+
+    }
 }

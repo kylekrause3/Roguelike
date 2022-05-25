@@ -154,4 +154,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        gameObject.SetActive(false);
+    }
 }
